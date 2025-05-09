@@ -1,0 +1,38 @@
+import qrcode
+import pytest
+from PIL import Image
+import io
+
+def generate_qrcode(data):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(data)
+    qr.make(fit=True)
+    img = qr.make_image(fill='black', back_color='white')
+    return img
+
+def test_qrcode_output():
+    data = "Hello, pytest!"
+    expected_img_path = "expected_qrcode.png"
+
+    # Generate QR code
+    generated_img = generate_qrcode(data)
+
+    # Load expected QR code image
+    expected_img = Image.open(expected_img_path)
+
+    # Convert both images to bytes for comparison
+    generated_bytes = io.BytesIO()
+    expected_bytes = io.BytesIO()
+    generated_img.save(generated_bytes, format='PNG')
+    expected_img.save(expected_bytes, format='PNG')
+
+    # Compare the byte content of both images
+    assert generated_bytes.getvalue() == expected_bytes.getvalue(), "QR code output does not match the expected image."
+
+if __name__ == "__main__":
+    pytest.main()
