@@ -37,4 +37,4 @@ def test_qrcode_output():
 
 if __name__ == "__main__":
     # Example of using the generate_qrcode function
-    generate_qrcode(data)
+    test_qrcode_output()
