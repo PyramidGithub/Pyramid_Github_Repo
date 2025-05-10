@@ -1,3 +1,3 @@
 qrcode
 Pillow
-io
+Python-IO
