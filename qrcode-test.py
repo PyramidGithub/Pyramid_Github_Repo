@@ -4,6 +4,7 @@ from PIL import Image
 import io
 
 def generate_qrcode(data):
+  
     # Create qr code instance
     qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=4)
     qr.add_data(data)
@@ -13,7 +14,8 @@ def generate_qrcode(data):
     print(f"The QR code from {data} is successfully saved to qrcode.png file.")
 
 def test_qrcode_output():
-    data = "https://example.com"
+    # Data to be encoded
+    data = "https://pyramidconsultingnet.sharepoint.com/:b:/g/EbZ7vTAzI51LnUqN8ohL-18BG_5m8OZFeBdM8jycZP4fzg?e=gmHBHZ"
     expected_img_path = "expected_qrcode.png"
 
     # Generate QR code
@@ -35,4 +37,4 @@ def test_qrcode_output():
 
 if __name__ == "__main__":
     # Example of using the generate_qrcode function
-    generate_qrcode(""https://pyramidconsultingnet.sharepoint.com/:b:/g/EbZ7vTAzI51LnUqN8ohL-18BG_5m8OZFeBdM8jycZP4fzg?e=gmHBHZ"")
+    generate_qrcode(data)
